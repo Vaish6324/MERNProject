@@ -1,0 +1,122 @@
+Background Color */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e8f0fe; /* Light blue background for the entire page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container Styling */
+.signup-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f3f4f6; /* Softer background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Form Title */
+.signup-container h1 {
+  text-align: center;
+  color: #333333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Form Input Containers */
+.signup-container form div {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Input Labels */
+.signup-container label {
+  flex: 1;
+  margin-right: 10px;
+  font-weight: bold;
+  color: #555555;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Input and Select Fields */
+.signup-container input,
+.signup-container select {
+  flex: 2;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333333;
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-right: 5px; /* Space between input and container border */
+}
+
+.signup-container input:focus,
+.signup-container select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Error Messages */
+.signup-container .error {
+  color: #d32f2f;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+/* Submit Button */
+.signup-container button {
+  width: 100%;
+  padding: 8px; /* Decreased size of the button */
+  background-color: #4caf50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+  background-color: #45a049;
+}
+
+/* Additional Styling */
+.signup-container button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Placeholder Styling */
+.signup-container input::placeholder {
+  color: #aaaaaa;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .signup-container {
+    padding: 15px;
+  }
+
+  .signup-container h1 {
+    font-size: 20px;
+  }
+
+  .signup-container button {
+    font-size: 12px;
+  }
+}

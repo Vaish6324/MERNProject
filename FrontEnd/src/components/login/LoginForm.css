@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #e8f0fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f3f4f6;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+    text-align: center;
+  }
+  
+  .login-container .logo {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
+  }
+  
+  .login-container h1 {
+    color: #333333;
+    margin-bottom: 20px;
+    text-align: center; /* Keeps the login heading centered */
+  }
+  
+  .login-container form {
+    text-align: left; /* Align form elements to the left */
+  }
+  
+  .login-container form div {
+    margin-bottom: 15px;
+  }
+  
+  .login-container label {
+    font-weight: bold;
+    color: #555555;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .login-container input {
+    width: 100%;
+    max-width: 350px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .login-container input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+  }
+  
+  .login-container .error {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .login-container button {
+    width: 100%;
+    max-width: 350px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .login-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .login-container .signup-prompt {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .login-container .signup-btn {
+    background-color: #4caf50;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .login-container .signup-btn:hover {
+    background-color: #45a049;
+  }
+  
