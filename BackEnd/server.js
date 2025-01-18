@@ -24,7 +24,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.url, {
+  .connect(process.env.URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
