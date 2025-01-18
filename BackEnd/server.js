@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, '/BackEnd/public', 'favicon.ico')));
 
 // Connect to MongoDB
-mongoose
+ mongoose
   .connect(process.env.URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
