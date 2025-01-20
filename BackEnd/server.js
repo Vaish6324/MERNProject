@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin:'https://frontend-iota-ecru.vercel.app',// Allow the frontend domain
+  origin: 'https://frontend-iota-ecru.vercel.app', // Allow the frontend domain
   methods: 'GET,POST,PUT,DELETE,OPTIONS', // Allowed methods
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
@@ -23,17 +23,20 @@ app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, '/BackEnd/public', 'favicon.ico')));
 
 // Connect to MongoDB
- mongoose
+mongoose
   .connect(process.env.URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
-  
-  app.get("/",(req, res) => {
-    res.json("Hello");
-  })
+
+app.get("/", (req, res) => {
+  res.json("Hello");
+});
+
+// Handle OPTIONS requests for CORS preflight
+app.options("/api/signup", cors(corsOptions));
 
 // Route for adding a user (Signup)
 app.post("/api/signup", async (req, res) => {
