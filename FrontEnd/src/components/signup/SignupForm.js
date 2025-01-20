@@ -9,13 +9,18 @@ const SignupForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    profilePic: null, // Add field for profile picture
   });
 
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, files } = e.target;
+    if (type === "file") {
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const validateForm = () => {
@@ -51,13 +56,15 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      const formDataToSubmit = new FormData();
+      for (const key in formData) {
+        formDataToSubmit.append(key, formData[key]);
+      }
+
       try {
-        const response = await fetch("https://backend-evnhmnefr-vaish6324s-projects.vercel.app/api/signup", {
+        const response = await fetch("https://backend-blush-five-36.vercel.app/api/signup", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          body: formDataToSubmit,
         });
 
         if (response.ok) {
@@ -112,6 +119,17 @@ const SignupForm = () => {
           </select>
           {errors.gender && <p className="error">{errors.gender}</p>}
         </div>
+        {/* Profile Picture Input */}
+        <div>
+          <label>Profile Picture</label>
+          <input
+            type="file"
+            name="profilePic"
+            accept="image/*"
+            onChange={handleChange}
+          />
+          {errors.profilePic && <p className="error">{errors.profilePic}</p>}
+        </div>
         {/* Email Input */}
         <div>
           <label>Email</label>
@@ -149,7 +167,7 @@ const SignupForm = () => {
         </div>
         {/* Sign Up Button */}
         <button type="submit">Sign Up</button>
-  
+
         {/* Login Redirect */}
         <div className="login-section">
           <p>Already have an account?</p>
@@ -165,7 +183,7 @@ const SignupForm = () => {
         </div>
       </form>
     </div>
-  );  
+  );
 };
 
-export default SignupForm; 
+export default SignupForm;

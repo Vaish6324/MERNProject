@@ -120,3 +120,22 @@ body {
     font-size: 12px;
   }
 }
+
+/* Profile Picture Input Styling */
+.signup-container input[type="file"] {
+  flex: 2;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #333333;
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-right: 5px; /* Space between input and container border */
+}
+
+.signup-container input[type="file"]:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+

@@ -29,7 +29,7 @@ const LoginForm = () => {
     setIsLoading(true); // Show loading state
 
     try {
-      const response = await fetch("https://backend-evnhmnefr-vaish6324s-projects.vercel.app/api/login", {
+      const response = await fetch("https://backend-blush-five-36.vercel.app/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const LoginForm = () => {
       if (response.ok) {
         const result = await response.json();
         alert(result.message);
-        navigate("/home"); // Navigate to the dashboard or desired page
+        navigate("/welcome"); // Navigate to the dashboard or desired page
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Login failed. Please try again.");

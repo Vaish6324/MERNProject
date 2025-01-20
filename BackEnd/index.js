@@ -11,7 +11,7 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: "https://frontend-iota-ecru.vercel.app", // Allow the frontend domain
+  origin: ["https://frontend-iota-ecru.vercel.app","https://frontend-iota-ecru.vercel.app/login"], // Allow the frontend domain
   methods: "GET,POST,PUT,DELETE,OPTIONS", // Allowed methods
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
@@ -29,13 +29,14 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
 
-// Default route
-app.get("/api/", (req, res) => {
-  res.json({ message: "API is running!" });
+// Route for root path (testing server availability)
+app.get("/", (req, res) => {
+  res.send("Backend is working fine!");
 });
 
+
 // Handle OPTIONS requests for CORS preflight
-app.options("/api/signup", cors(corsOptions));
+//app.options("/api/signup", cors(corsOptions));
 
 // Route for adding a user (Signup)
 app.post("/api/signup", async (req, res) => {
@@ -56,6 +57,7 @@ app.post("/api/signup", async (req, res) => {
     res.status(500).json({ error: "Error creating user" });
   }
 });
+
 
 // Route for user login
 app.post("/api/login", async (req, res) => {
