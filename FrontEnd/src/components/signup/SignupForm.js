@@ -52,7 +52,7 @@ const SignupForm = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await fetch("https://backend-pi-lac.vercel.app/api/signup", {
+        const response = await fetch("https://backend-liart-omega.vercel.app/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

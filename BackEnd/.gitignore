@@ -7,3 +7,5 @@ node_modules/
 
 .env
 >>>>>>> 606d4965cd2c7463f63d911fdc79fb01c646bb5b
+
+.vercel
