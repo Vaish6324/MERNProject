@@ -3,24 +3,22 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const User = require("./user");
-const favicon = require('serve-favicon');
-const path = require('path');
-
+const favicon = require("serve-favicon");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: 'https://frontend-iota-ecru.vercel.app', // Allow the frontend domain
-  methods: 'GET,POST,PUT,DELETE,OPTIONS', // Allowed methods
+  origin: "https://frontend-iota-ecru.vercel.app", // Allow the frontend domain
+  methods: "GET,POST,PUT,DELETE,OPTIONS", // Allowed methods
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
-// Middleware
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(favicon(path.join(__dirname, '/BackEnd/public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 // Connect to MongoDB
 mongoose
@@ -31,8 +29,9 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
 
-app.get("/", (req, res) => {
-  res.json("Hello");
+// Default route
+app.get("/api/", (req, res) => {
+  res.json({ message: "API is running!" });
 });
 
 // Handle OPTIONS requests for CORS preflight
