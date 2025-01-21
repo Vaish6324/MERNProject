@@ -9,7 +9,7 @@ const SignupForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    profilePic: null, // Add field for profile picture
+    profilePic: null,
   });
 
   const [errors, setErrors] = useState({});
@@ -86,6 +86,7 @@ const SignupForm = () => {
     <div className="signup-container">
       <form onSubmit={handleSubmit}>
         <h1>Signup Form</h1>
+
         {/* Full Name Input */}
         <div>
           <label>Full Name</label>
@@ -97,6 +98,7 @@ const SignupForm = () => {
           />
           {errors.fullName && <p className="error">{errors.fullName}</p>}
         </div>
+
         {/* Date of Birth Input */}
         <div>
           <label>Date of Birth</label>
@@ -108,6 +110,7 @@ const SignupForm = () => {
           />
           {errors.dateOfBirth && <p className="error">{errors.dateOfBirth}</p>}
         </div>
+
         {/* Gender Selection */}
         <div>
           <label>Gender</label>
@@ -119,6 +122,7 @@ const SignupForm = () => {
           </select>
           {errors.gender && <p className="error">{errors.gender}</p>}
         </div>
+
         {/* Profile Picture Input */}
         <div>
           <label>Profile Picture</label>
@@ -130,6 +134,7 @@ const SignupForm = () => {
           />
           {errors.profilePic && <p className="error">{errors.profilePic}</p>}
         </div>
+
         {/* Email Input */}
         <div>
           <label>Email</label>
@@ -141,6 +146,7 @@ const SignupForm = () => {
           />
           {errors.email && <p className="error">{errors.email}</p>}
         </div>
+
         {/* Password Input */}
         <div>
           <label>Password</label>
@@ -152,6 +158,7 @@ const SignupForm = () => {
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
+
         {/* Confirm Password Input */}
         <div>
           <label>Confirm Password</label>
@@ -161,10 +168,9 @@ const SignupForm = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
           />
-          {errors.confirmPassword && (
-            <p className="error">{errors.confirmPassword}</p>
-          )}
+          {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
+
         {/* Sign Up Button */}
         <button type="submit">Sign Up</button>
 

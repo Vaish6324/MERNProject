@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("./cloudinaryConfig");
 const User = require("./user");
 const favicon = require("serve-favicon");
 const path = require("path");
@@ -11,14 +14,26 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: ["https://frontend-iota-ecru.vercel.app","https://frontend-iota-ecru.vercel.app/login"], // Allow the frontend domain
-  methods: "GET,POST,PUT,DELETE,OPTIONS", // Allowed methods
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  origin: "https://frontend-iota-ecru.vercel.app", // Frontend URLs
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
+  credentials: true,
+  allowedHeaders: "Content-Type, Authorization",
 };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+
+// Configure Multer and Cloudinary Storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "user-profile-pics", // Folder name in Cloudinary
+    allowed_formats: ["jpg", "jpeg", "png"], // Allowed file formats
+  },
+});
+
+const upload = multer({ storage });
 
 // Connect to MongoDB
 mongoose
@@ -29,27 +44,27 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Could not connect to MongoDB", err));
 
-// Route for root path (testing server availability)
+// Test Route
 app.get("/", (req, res) => {
   res.send("Backend is working fine!");
 });
 
-
-// Handle OPTIONS requests for CORS preflight
-//app.options("/api/signup", cors(corsOptions));
-
-// Route for adding a user (Signup)
-app.post("/api/signup", async (req, res) => {
+// Signup Route with Image Upload
+app.post("/api/signup", upload.single("profilePic"), async (req, res) => {
   const { fullName, dateOfBirth, gender, email, password } = req.body;
 
   try {
+    const profilePicUrl = req.file ? req.file.path : null; // Cloudinary URL from uploaded image
+
     const newUser = new User({
       fullName,
       dateOfBirth,
       gender,
       email,
       password,
+      profilePicUrl,
     });
+
     await newUser.save();
     res.status(201).json({ message: "User created successfully!" });
   } catch (error) {
@@ -58,8 +73,7 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-
-// Route for user login
+// Login Route
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -81,7 +95,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Start the server
+// Start Server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
